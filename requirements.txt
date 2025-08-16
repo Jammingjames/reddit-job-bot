@@ -1,1 +1,6 @@
+praw
+requests
+python-dotenv
+schedule    # if you want to run the bot on a timer locally
+pandas      # if you want to save/filter jobs in CSV format
 
