@@ -2,23 +2,31 @@ name: Reddit Job Bot
 
 on:
   schedule:
-    - cron: "0 9 * * *"   # Runs every day at 9AM UTC
-  workflow_dispatch:       # Lets you run it manually from GitHub
+    - cron: "0 9 * * *"   # Runs every day at 9 AM UTC
+  workflow_dispatch:      # Allows you to run it manually from GitHub
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+    - name: Install dependencies
+      run: pip install -r requirements.txt
 
-      - name: Run bot
-        run: python main.py
+    - name: Run bot
+      env:
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        USER_AGENT: ${{ secrets.USER_AGENT }}
+        EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+        EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        TO_EMAIL: ${{ secrets.TO_EMAIL }}
+      run: python main.py
