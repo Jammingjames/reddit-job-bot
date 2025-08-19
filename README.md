@@ -17,3 +17,7 @@ A Python bot that scans job subreddits and emails you when posts match your keyw
 1. Add repo **Secrets** (Settings → Secrets and variables → Actions):  
    `CLIENT_ID, CLIENT_SECRET, USER_AGENT, EMAIL_ADDRESS, EMAIL_PASSWORD, TO_EMAIL`
 2. Ensure files exist:
+3. (Optional local run)
+```bash
+pip install -r requirements.txt
+python main.py
